@@ -1,0 +1,94 @@
+body {
+    overflow: hidden;
+}
+
+/* Left Panel */
+
+.left-panel {
+    background-color: #872BFE;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    color: #F6F6F6;
+}
+
+.left-panel h1 {
+    font-family: Dela Gothic One;
+    font-size: 3.5rem;
+    margin-top: 25%;
+}
+
+.left-panel h4 {
+    font-family: Raleway;
+    font-size: 1.5rem;
+    margin-top: 12px;
+    margin-bottom: 15px;
+    line-height: 0.6;
+}
+
+.confettii {
+    height: 40vh;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+/* Right Panel */
+
+.right-panel {
+    text-align: center;
+}
+
+.promo {
+    padding: 20% 5% 0;
+}
+
+.right-panel h3 {
+    font-family: Dela Gothic One;
+    font-size: 2rem;
+    color: #FD49A0;
+}
+
+.right-panel h6 {
+    font-family: Raleway;
+    font-size: 1rem;
+    color: #423F3F;
+    font-weight: 500;
+    margin: 8px 15%;
+    line-height: 1.5;
+}
+
+.promo em {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.btn-start {
+    float: left;
+    background-color: #603f8b;
+    border: none;
+    border-radius: 2px;
+    padding: 6px 20px;
+    font-family: Raleway;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+    margin-top: 30%;
+}
+
+.notes-img {
+    height: 320px;
+    width: 500px;
+}
+
+.right-panel p {
+    position: absolute;
+    bottom: 1px;
+    left: 300px;
+    text-align: center;
+    font-size: 12px;
+    font-family: Raleway;
+    font-weight: 600;
+    color: #888888;
+}
