@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../css/landing.css";
 import noteImage from "../images/notes.png";
 import confettiiImage from "../images/confettii.png";
@@ -25,9 +26,11 @@ const Landing = () => {
             day activities. Get started with your notes now.
           </h6>
           <img src={noteImage} alt="Take Notes" className="notes-img" />
-          <button className="btn btn-primary btn-lg btn-start">
-            Get Started
-          </button>
+          <Link to="/home">
+            <button className="btn btn-primary btn-lg btn-start">
+              Get Started
+            </button>
+          </Link>
         </div>
         <p>
           ❤ Designed & Developed by <em>Utkarsh Kore</em> ❤
