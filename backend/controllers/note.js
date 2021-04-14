@@ -6,6 +6,7 @@ exports.addNote = (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({
       message: errors.array()[0].msg,
+      error: errors.array()[0].msg,
       param: errors.array()[0].param,
     });
   }

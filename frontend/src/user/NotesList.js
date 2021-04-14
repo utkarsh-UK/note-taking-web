@@ -1,23 +1,41 @@
 import React, { useState, useEffect } from "react";
 
 import noDataImage from "../images/no-data.png";
+import { getAllNotes } from "../core/apicalls";
+
+const moment = require("moment");
 
 const NotesList = () => {
   const [notes, setNotes] = useState([]);
 
-  const getNotesList = () => {
+  useEffect(() => {
+    preFetchNotes();
+  }, []);
+
+  const preFetchNotes = () => {
+    getAllNotes()
+      .then((data) => {
+        if (data.error) {
+          setNotes([]);
+        } else {
+          setNotes(data.notes);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const renderNotesList = () => {
     return (
       <ul className="mt-3">
         {notes.map((note, index) => (
           <li key={index}>
             <div className="note-tile">
-              <h5 className="note-title">Lorem Ipsum</h5>
-              <p className="note-content">
-                Lorem Ipsum Dolor sit amet. Lorem Ipsum Dolor sit amet. Lorem
-                Ipsum Dolor sit amet.Lorem Ipsum Dolor sit amet. Lorem Ipsum
-                Dolor sit amet. Lorem Ipsum Dolor sit amet.
+              <h5 className="note-title"> {note.title} </h5>
+              <p className="note-content">{note.content}</p>
+              <p className="note-date">
+                {" "}
+                {moment(new Date(note.createdAt)).format("ll")}{" "}
               </p>
-              <p className="note-date">5th Mar, 2020</p>
             </div>
           </li>
         ))}
@@ -35,7 +53,7 @@ const NotesList = () => {
     );
   };
 
-  return notes.length ? getNotesList() : showNoNotes();
+  return notes.length ? renderNotesList() : showNoNotes();
 };
 
 export default NotesList;

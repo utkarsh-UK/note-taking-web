@@ -1,8 +1,9 @@
 require("dotenv").config();
 
 const express = require("express");
-const parser = require("body-parser");
 const mongoose = require("mongoose");
+const parser = require("body-parser");
+const cors = require("cors");
 
 const noteRoutes = require("./routes/note");
 
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 5500;
 
 // middlewares
 app.use(parser.json());
+app.use(cors());
 
 // routes
 app.use("/api", noteRoutes);

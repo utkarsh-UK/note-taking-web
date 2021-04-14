@@ -190,6 +190,7 @@ body {
 
 .form {
     font-family: Raleway;
+    color: #313131;
 }
 
 .form h4 {
@@ -217,6 +218,7 @@ body {
     margin-top: 3%;
     margin-bottom: 20px;
     padding: 4px 20px;
+    font-weight: 500;
 }
 
 .form textarea {
@@ -224,6 +226,7 @@ body {
     width: 90%;
     margin-bottom: 20px;
     padding: 10px 20px;
+    font-weight: 500;
 }
 
 .btn-save {
@@ -238,6 +241,20 @@ body {
     font-size: 1rem;
     margin-right: 10%;
     margin-top: 3%;
+}
+
+.message {
+    font-size: 0.9rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.success {
+    color: #00D84A;
+}
+
+.error {
+    color: #D82E2F;
 }
 
 /* ***************************** Pseudo Selectors *********************** */

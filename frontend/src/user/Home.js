@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 import NotesList from "./NotesList";
 import AddNote from "./AddNote";
 
 const Home = () => {
+  const [reload, setReload] = useState(false);
+
   const leftPanel = () => {
     return (
       <div className="col-md-4 notes-section">
@@ -17,7 +19,7 @@ const Home = () => {
   const rightPanel = () => {
     return (
       <div className="col-md-8 add-note">
-        <AddNote />
+        <AddNote setReload={setReload} reload={reload} />
         <p className="footer-text">
           ❤ Designed & Developed by <em>Utkarsh Kore</em> ❤
         </p>
