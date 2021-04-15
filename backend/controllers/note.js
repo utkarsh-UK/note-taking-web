@@ -43,3 +43,23 @@ exports.getAllNotes = (req, res) => {
       return res.json({ message: "Successfully fetched all notes", notes });
     });
 };
+
+exports.getNote = (req, res) => {
+  return res.json({ message: "Note fetched successfully", note: req.note[0] });
+};
+
+// Middlewares
+exports.getNoteById = (req, res, next, id) => {
+  Note.find({ _id: id })
+    .select("_id title content createdAt")
+    .exec((err, note) => {
+      if (err || !note) {
+        return res
+          .status(400)
+          .json({ message: "Could not fetch note.", error: err });
+      }
+
+      req.note = note;
+      next();
+    });
+};

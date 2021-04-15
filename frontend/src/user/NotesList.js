@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import noDataImage from "../images/no-data.png";
 import { getAllNotes } from "../core/apicalls";
+import { Link } from "react-router-dom";
 
 const moment = require("moment");
 
@@ -29,14 +30,19 @@ const NotesList = () => {
       <ul className="mt-3">
         {notes.map((note, index) => (
           <li key={index}>
-            <div className="note-tile">
-              <h5 className="note-title"> {note.title} </h5>
-              <p className="note-content">{note.content}</p>
-              <p className="note-date">
-                {" "}
-                {moment(new Date(note.createdAt)).format("ll")}{" "}
-              </p>
-            </div>
+            <Link
+              to={`/home/note/${note._id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <div className="note-tile">
+                <h5 className="note-title"> {note.title} </h5>
+                <p className="note-content">{note.content.slice(0, 200)}</p>
+                <p className="note-date">
+                  {" "}
+                  {moment(new Date(note.createdAt)).format("ll")}{" "}
+                </p>
+              </div>
+            </Link>
           </li>
         ))}
       </ul>

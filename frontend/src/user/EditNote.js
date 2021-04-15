@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { saveNote } from "../core/apicalls";
+import React, { useState, useEffect } from "react";
+import { saveNote, fetchNote } from "../core/apicalls";
 
-const AddNote = () => {
+const EditNote = ({ noteid = "" }) => {
   const [data, setData] = useState({
     title: "",
     content: "",
@@ -9,6 +9,31 @@ const AddNote = () => {
     success: false,
     message: "",
   });
+
+  useEffect(() => {
+    preFetchNote(noteid);
+  }, []);
+
+  const preFetchNote = (id) => {
+    if (!id) {
+      return;
+    }
+
+    fetchNote(id)
+      .then((noteData) => {
+        if (noteData.error) {
+          console.log("Error occured in Note fetching" + noteData.error);
+        } else {
+          console.log(noteData);
+          setData({
+            ...data,
+            title: noteData.note.title,
+            content: noteData.note.content,
+          });
+        }
+      })
+      .catch((error) => console.log(error));
+  };
 
   const handleChange = (name) => (event) => {
     setData({ ...data, [name]: event.target.value });
@@ -73,7 +98,7 @@ const AddNote = () => {
 
   return (
     <form className="form">
-      <h4>Add New</h4>
+      <h4> {data.title} </h4>
       <input
         type="text"
         placeholder="Add title here..."
@@ -98,7 +123,7 @@ const AddNote = () => {
         type="button"
         name="save"
         id="save"
-        value={data.loading ? "Saving Note..." : "Save Note"}
+        value={data.loading ? "Updating Note..." : "Edit Note"}
         className="btn btn-primary btn-lg btn-save"
         onClick={onSubmit}
       />
@@ -107,4 +132,4 @@ const AddNote = () => {
   );
 };
 
-export default AddNote;
+export default EditNote;

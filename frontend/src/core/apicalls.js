@@ -28,3 +28,18 @@ export const getAllNotes = () => {
     })
     .catch((error) => error);
 };
+
+export const fetchNote = (id) => {
+  return fetch(`${API}/notes/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  })
+    .then((response) => {
+      console.log(response);
+      return response.json();
+    })
+    .catch((error) => error);
+};

@@ -140,6 +140,7 @@ body {
     font-family: Raleway;
     position: relative;
     margin-bottom: 20px;
+    transition: background-color 0.5s;
 }
 
 .note-title {
@@ -262,4 +263,8 @@ body {
     background-color: #6c63ff;
     color: #F6F6F6;
     cursor: pointer;
+}
+
+.note-tile:hover > * {
+    color: #F6F6F6;
 }
