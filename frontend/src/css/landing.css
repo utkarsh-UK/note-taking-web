@@ -258,6 +258,29 @@ body {
     color: #D82E2F;
 }
 
+/* *************************** Edit Note ******************************** */
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 10%;
+}
+
+.controls {
+    color: #603F8B;
+}
+
+.controls > i {
+    margin-right: 8px;
+    margin-top: 15px;
+    transition: transform 0.5s;
+}
+
+.controls i:first-child:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    color: #872bfe;
+}
+
 /* ***************************** Pseudo Selectors *********************** */
 .note-tile:hover {
     background-color: #6c63ff;

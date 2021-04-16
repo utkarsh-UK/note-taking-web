@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { saveNote, fetchNote } from "../core/apicalls";
+import { Link, Redirect } from "react-router-dom";
+
+import { fetchNote, updateNote, deleteNote } from "../core/apicalls";
 
 const EditNote = ({ noteid = "" }) => {
   const [data, setData] = useState({
@@ -59,8 +61,8 @@ const EditNote = ({ noteid = "" }) => {
     setData({ ...data, loading: true, message: "" });
     document.querySelector(".message").classList.remove("error");
     document.querySelector(".message").classList.remove("success");
-    const note = { title: data.title, content: data.content };
-    saveNote(note)
+    const note = { title: data.title, content: data.content, _id: noteid };
+    updateNote(note)
       .then((data) => {
         if (data.error) {
           setData({
@@ -89,8 +91,48 @@ const EditNote = ({ noteid = "" }) => {
           loading: false,
           success: false,
           message: err,
-          title: "",
-          content: "",
+        });
+        document.querySelector(".message").classList.add("error");
+      });
+  };
+
+  const performRedirect = () => {
+    if (data.success) {
+      return <Redirect to="/home" />;
+    } else {
+      return <div></div>;
+    }
+  };
+
+  const onDelete = () => {
+    deleteNote(noteid)
+      .then((data) => {
+        if (data.error) {
+          setData({
+            ...data,
+            loading: false,
+            success: false,
+            message: data.message,
+          });
+          document.querySelector(".message").classList.add("error");
+        } else {
+          setData({
+            ...data,
+            loading: false,
+            success: true,
+            message: data.message,
+            title: "",
+            content: "",
+          });
+          document.querySelector(".message").classList.add("success");
+        }
+      })
+      .catch((err) => {
+        setData({
+          ...data,
+          loading: false,
+          success: false,
+          message: err,
         });
         document.querySelector(".message").classList.add("error");
       });
@@ -98,7 +140,15 @@ const EditNote = ({ noteid = "" }) => {
 
   return (
     <form className="form">
-      <h4> {data.title} </h4>
+      <div className="header">
+        <h4> {data.title} </h4>
+        <div className="controls">
+          <i className="fas fa-trash fa-lg" onClick={onDelete}></i>
+          <Link to="/home" style={{ color: "#603F8B" }}>
+            <i className="fas fa-plus-circle fa-lg"></i>
+          </Link>
+        </div>
+      </div>
       <input
         type="text"
         placeholder="Add title here..."
@@ -128,6 +178,7 @@ const EditNote = ({ noteid = "" }) => {
         onClick={onSubmit}
       />
       <p className="message"> {data.message} </p>
+      {performRedirect()}
     </form>
   );
 };

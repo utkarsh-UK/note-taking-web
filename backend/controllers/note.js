@@ -1,5 +1,6 @@
-const Note = require("../models/note");
 const { validationResult } = require("express-validator");
+
+const Note = require("../models/note");
 
 exports.addNote = (req, res) => {
   const errors = validationResult(req);
@@ -29,6 +30,26 @@ exports.addNote = (req, res) => {
   });
 };
 
+exports.updateNote = (req, res) => {
+  Note.findByIdAndUpdate(
+    req.params.noteid,
+    req.body,
+    { new: true },
+    (err, updatedNote) => {
+      if (err || !updatedNote) {
+        return res
+          .status(400)
+          .json({ message: "Could not update note.", error: err });
+      } else {
+        return res.json({
+          message: "Note has been updated",
+          note: updatedNote,
+        });
+      }
+    }
+  );
+};
+
 exports.getAllNotes = (req, res) => {
   Note.find()
     .sort({ createdAt: "desc" })
@@ -46,6 +67,21 @@ exports.getAllNotes = (req, res) => {
 
 exports.getNote = (req, res) => {
   return res.json({ message: "Note fetched successfully", note: req.note[0] });
+};
+
+exports.deleteNote = (req, res) => {
+  Note.findByIdAndDelete(req.params.noteid, {}, (err, note) => {
+    if (err || !note) {
+      return res
+        .status(400)
+        .json({ message: "Could not delete note.", error: err });
+    } else {
+      return res.json({
+        message: "Note has been deleted",
+        note: note,
+      });
+    }
+  });
 };
 
 // Middlewares

@@ -15,9 +15,38 @@ export const saveNote = (note) => {
     .catch((error) => error);
 };
 
+export const updateNote = (note) => {
+  return fetch(`${API}/notes/${note._id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(note),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => error);
+};
+
 export const getAllNotes = () => {
   return fetch(`${API}/notes/all`, {
     method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => error);
+};
+
+export const deleteNote = (id) => {
+  return fetch(`${API}/notes/${id}`, {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
