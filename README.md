@@ -9,11 +9,11 @@ The website has a simple and minimal interface.
 
 ## Preview Shots
 ###### Landing Page
-![Landing Page](images/landing.png)
+<img src="images/landing.png" width="500"  alt="Landing Page"  title="Landing Page"/>
 ###### Home Page
-![Landing Page](images/home.png)
+<img src="images/home.png" width="500"  alt="Home Page"  title="Home Page"/>
 ###### Edit Note Page
-![Landing Page](images/edit-note.png)
+<img src="images/edit-note.png" width="500"  alt="Edit Note Page"  title="Edit Note Page"/>
 
 ## Tools Used
 * React for front end
