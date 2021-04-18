@@ -9,13 +9,13 @@ The website has a simple and minimal interface.
 
 ## Preview Shots
 ###### Landing Page
-<img src="images/landing.png" width="500"  alt="Landing Page"  title="Landing Page"/>
+<img src="images/landing.PNG" width="500"  alt="Landing Page"  title="Landing Page"/>
 
 ###### Home Page
-<img src="images/home.png" width="500"  alt="Home Page"  title="Home Page"/>
+<img src="images/home.PNG" width="500"  alt="Home Page"  title="Home Page"/>
 
 ###### Edit Note Page
-<img src="images/edit-note.png" width="500"  alt="Edit Note Page"  title="Edit Note Page"/>
+<img src="images/edit-note.PNG" width="500"  alt="Edit Note Page"  title="Edit Note Page"/>
 
 ## Tools Used
 * React for front end
